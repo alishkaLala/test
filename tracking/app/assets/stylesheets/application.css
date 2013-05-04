@@ -1,0 +1,117 @@
+fieldset {
+  border: 1px solid #0F5127;
+  background: #CCF6DB;
+ }
+table {
+  padding: 5px;  
+  border: 3px double black;  
+  border-collapse: collapse;  
+ }
+tr {
+  text-align: left;  
+  background: #A8F6D7; 
+  padding: 5px;  
+  border: 2px solid black;  
+  }
+td {
+  border: 1px solid black;  
+  padding: 5px;  
+  }
+th {
+  background: #0CD786;
+  border: 3px double black; 
+  padding: 5px;  
+  }
+
+#information {
+  border: 1px solid #0F5127;
+  background: white;
+  font-style: italic;
+}
+
+#explanation {
+  width: 450px;
+  border: 2px solid #309153;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #CAE8D5;
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+ 
+ 
+.history div { border: 1px dotted #0E4020; margin: 10px; padding: 10px;}
+.history adition { color: grey;}
+
+.field {
+   font-style: italic;
+   font-size: 20px;
+}
+h1{
+  font-size: 2em;
+  color: black;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  border-bottom: 3px  #172EA1 solid;
+  border-top: 3px  #172EA1 solid;
+  background:#C4CCF0; 
+  padding: 10px;
+}
+body {
+  background:#C3FFF0;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+p, ol, ul, td {
+ 
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #C4CCF0;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.notice {
+  color: green;
+  
+}
+
+.field_with_errors {
+  width: 200px;
+  border: 2px solid red;
+  text-align: center; 
+}
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}

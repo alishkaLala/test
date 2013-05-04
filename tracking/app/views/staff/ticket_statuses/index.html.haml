@@ -1,0 +1,27 @@
+%h1= "ticket statuses"
+- if flash[:notice]
+  .field_with_errors
+    = flash[:notice]
+- unless @ticket_statuses.empty?
+  %table
+    %thead
+      %tr
+        %th= :id
+        %th= :status
+        %th= :action
+    %tbody
+      - @ticket_statuses.each do |ticket_status|
+        %tr
+          %td= ticket_status.id
+          %td= ticket_status.definition
+          %td= button_to "Delete", staff_ticket_status_path(ticket_status.id), :method=>:delete, :class=>:destroy,:confirm=>"Are you sure?"
+- else
+  = "Did not match any ticket status"  
+%br  
+= form_tag  staff_ticket_statuses_path, :method=>:post do
+  = label :definition, "New created status "
+  = text_field :ticket_status, :definition, :size => 15
+  = submit_tag "Create"       
+         
+                   
+

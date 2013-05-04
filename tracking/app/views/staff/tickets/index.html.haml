@@ -1,0 +1,47 @@
+%h1= "Tickets in system"
+.field
+  
+  = link_to "New unassigned | ", staff_tickets_path(:needed_status => 1 )
+  = link_to "Open | ", staff_tickets_path(:needed_status => 2 ) 
+  = link_to "On hold|", staff_tickets_path(:needed_status => 3)
+  = link_to "Close", staff_tickets_path(:needed_status => 4)
+  
+  = form_tag staff_tickets_path, :method => :get do
+    = "Search template: "
+    %textarea{:name => :needed_template,:cols => 40, :rows=>1}
+    = submit_tag "Search"  
+- unless @tickets.empty?
+  %table
+    %thead
+      %tr
+        %th= :id
+        %th= :name
+        %th= :email
+        %th= :reference
+        %th= :department
+        %th= :subject
+        %th= :actions
+        %th= :owner
+        %th= :status
+    %tbody
+      - @tickets.each do |ticket|
+        %tr
+          %td= ticket.id
+          %td= ticket.name
+          %td= ticket.email
+          %td= ticket.reference
+          %td= ticket.ticket_department.definition
+          %td= ticket.subject
+          %td
+            = link_to "Answer", staff_ticket_path(ticket)
+          - if ticket.staff_id.nil?
+            %td= :Unassigned
+          - else
+            %td= ticket.staff.name
+          %td= ticket.ticket_status.definition
+         
+                   
+- else
+  = "Did not match any ticket"
+= link_to "Config department", staff_ticket_departments_path
+= link_to "Config statuses", staff_ticket_statuses_path

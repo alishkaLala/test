@@ -1,0 +1,24 @@
+%h1= "ticket department"
+- unless @ticket_departments.empty?
+  %table
+    %thead
+      %tr
+        %th= :id
+        %th= :definition
+        %th= :action
+    %tbody
+      - @ticket_departments.each do |ticket_department|
+        %tr
+          %td= ticket_department.id
+          %td= ticket_department.definition
+          %td= button_to "Delete", staff_ticket_department_path(ticket_department.id), :method=>:delete, :class=>:destroy,:confirm=>"Are you sure?"
+- else
+  = "Did not match any ticket department"  
+%br
+= form_tag  staff_ticket_departments_path, :method=>:post do
+  = label :ticket_department, 'Create new department with value ' 
+  = text_field :ticket_department, :definition, :size => 15
+  = submit_tag "Create"       
+         
+                   
+

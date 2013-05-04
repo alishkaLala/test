@@ -1,0 +1,76 @@
+%h1= " Answer for ticket #{ @ticket.reference }" 
+    
+%fieldset
+  %legend
+    %h3= "Subject: #{@ticket.subject}"  
+  #explanation
+    %ul
+      %li= "Client: name #{@ticket.name}, email #{@ticket.email}"
+      %li= "Department #{@ticket.ticket_department.definition} "
+      %li= "Status of ticket: #{ @ticket.ticket_status.definition }"
+      - if @ticket.staff_id
+        %li=  "Owner: #{@ticket.staff.name} " 
+      %li= "Body "
+      %textarea{:cols => 40, :rows=>5, :readonly => "readonly"}= "#{@ticket.body}"
+%br 
+%br
+
+%fieldset
+  %legend
+    %h3= "Your answer"  
+  #explanation
+    %ul
+    - if @signed_in
+      = "Changing fields:"
+      = form_tag update_fields_staff_ticket_path, :method => :put do
+        %li= label :ticket, 'ticket_department'
+        = select_tag :ticket_department_id, options_for_select(TicketDepartment.all.map{|p| [p.definition,p.id]}, @ticket.ticket_department_id)
+        %li= label :ticket_status_id, :ticket_status_id
+        = select_tag :ticket_status_id, options_for_select(TicketStatus.all.map{|status|[status.definition, status.id] }, @ticket.ticket_status_id)
+        %li= label :ticket, :ticket_staff_id
+        = select_tag :staff_id, options_for_select(Staff.all.map{ |staff| [staff.name,staff.id]}<< ["Nobody",nil], @ticket.staff_id)
+        %li= label :comment, :body
+        %textarea{:name => :body,:cols => 40, :rows=>5}
+        = submit_tag "Send"
+        %br
+    - else
+      = form_for @comment, :method => :post do |f|
+        = f.text_field :body
+        = f.hidden_field :ticket_id, :value => @ticket.id
+        = submit_tag "Send"    
+     
+
+    
+%fieldset
+  %legend
+    %h3= "history"
+  .history
+    - unless @histories.nil?
+      - @histories.each do |history|
+        %div
+          = history.action
+          %adition
+            = history.created_at.strftime("%d %B %Y")    
+%fieldset
+  %legend
+    %h3= "Comments history"
+  .history
+    - unless @ticket.comments.empty?
+      - @ticket.comments.each do |comment|
+        %div
+          = comment.body
+          %adition
+            - name = comment.staff_id.nil? ? @ticket.name : comment.staff.name
+            - date = comment.created_at.strftime("%d %B %Y")
+            = ", was create at #{date}, by #{name}"
+           
+            
+             
+   
+
+
+  
+  
+  
+  
+    

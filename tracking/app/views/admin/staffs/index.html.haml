@@ -1,0 +1,31 @@
+%h1= "Listing staffs" 
+
+- if flash[:notice]
+  .notice
+    = flash[:notice]
+   
+
+.field
+
+- unless @staffs.empty?
+  %table
+    %thead
+      %tr
+        %th= :id
+        %th= :name
+        %th= :login
+        %th= :action
+        
+    %tbody
+      - @staffs.each do |staff|
+        %tr
+          %td= staff.id
+          %td= staff.name
+          %td= staff.login
+          %td= button_to "Delete", admin_staff_path(staff.id), :method=>:delete, :class=>:destroy,:confirm=>"Are you sure?"
+         
+                   
+- else
+  = "Did not match any ticket"
+= link_to "New", new_admin_staff_path
+ 

@@ -1,0 +1,11 @@
+%h1 Login to system
+- if flash[:alert]
+  .field_with_errors 
+    = flash[:alert]  
+= form_tag({:controller => 'sessions', :action => 'create'}, :method => :post) do
+  = label_tag :login  
+  = text_field_tag :login, params[:login]  
+  = label_tag :pasword 
+  = password_field_tag :pasword, params[:pasword]  
+  = submit_tag "Login"  
+     
