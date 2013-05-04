@@ -12,7 +12,7 @@ class ClientMailer < ActionMailer::Base
     @message = message
     @ticket = ticket
     @link = show_ticket_by_reference_url(@ticket.reference)
-    mail(:to => @ticket.email, :subject => "New query was posted")
+    mail(:to => @ticket.email, :subject => "New action")
   end
   
 end

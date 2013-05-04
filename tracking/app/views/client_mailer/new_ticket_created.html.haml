@@ -1,6 +1,9 @@
-= "Dear, #{@ticket.name},  your query has been posted."
-%br
-= "Unique reference of your ticket is #{@ticket.reference}."
-%br
-= "Link to it is #{@link}"
+%html
+  %head
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    %style= File.read(Rails.root.join('app/assets/stylesheets/application.css'))
+    #mailer
+      %pre= "Dear, #{@ticket.name},  your query has been posted."
+      %li= "Unique reference of your ticket is #{@ticket.reference}."
+      %li= "Link to it is #{@link}"
  

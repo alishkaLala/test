@@ -20,7 +20,8 @@
     %h3= "Your answer"  
   #explanation
     %ul
-    - if @signed_in
+    - if @signed_in  
+    
       = "Changing fields:"
       = form_tag update_fields_staff_ticket_path, :method => :put do
         %li= label :ticket, 'ticket_department'

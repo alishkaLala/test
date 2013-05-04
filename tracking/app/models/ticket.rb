@@ -48,7 +48,7 @@ class Ticket < ActiveRecord::Base
   end
     
     def history_creation
-      self.ticket_histories.build(:action => "#{ self.name } created a query" ).save
+      ticket_histories.build(:action => "#{ self.name } created a query" ).save
     end
     
     

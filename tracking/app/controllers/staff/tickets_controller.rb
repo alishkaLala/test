@@ -9,7 +9,11 @@ class Staff::TicketsController < ApplicationController
   def show
     @signed_in = any_log
     @ticket = Ticket.find(params[:id])
+    
+    redirect_to staff_tickets_path if (@ticket.staff_id and @ticket.staff_id != @signed_in)
+      
     @histories = @ticket.ticket_histories
+    @current_staff_id =  any_log
   end
   
   def update_fields
