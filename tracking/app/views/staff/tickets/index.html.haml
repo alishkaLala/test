@@ -8,7 +8,7 @@
   
   = form_tag staff_tickets_path, :method => :get do
     = "Search template: "
-    %textarea{:name => :needed_template,:cols => 40, :rows=>1}
+    = text_field_tag  :needed_template 
     = submit_tag "Search"  
 - unless @tickets.empty?
   %table

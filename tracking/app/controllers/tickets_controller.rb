@@ -27,6 +27,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find_by_reference(params[:reference])
     @histories = @ticket.ticket_histories
     @comment = Comment.new
+    @comments = @ticket.comments
     @statuses = TicketStatus.all 
     render "/staff/tickets/show"  
   end

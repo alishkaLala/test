@@ -9,11 +9,12 @@ class Staff::TicketsController < ApplicationController
   def show
     @signed_in = any_log
     @ticket = Ticket.find(params[:id])
-    
-    redirect_to staff_tickets_path if (@ticket.staff_id and @ticket.staff_id != @signed_in)
-      
-    @histories = @ticket.ticket_histories
     @comments = @ticket.comments
+    if (@ticket.staff_id and @ticket.staff_id != @signed_in)
+      flash.notice = "Ticket with reference #{@ticket.reference} is owned by another staff (name #{@ticket.staff.name}, id #{@ticket.staff.id})"
+      redirect_to staff_tickets_path 
+    end  
+    @histories = @ticket.ticket_histories
     @current_staff_id =  any_log
    
   end
