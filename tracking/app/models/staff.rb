@@ -8,5 +8,6 @@ class Staff < ActiveRecord::Base
   validates :login, presence: true, uniqueness: true
   validates :name, presence: true
   validates :password, :confirmation => true, :confirmation => true,  length: {minimum: 1 }
+  validates :login, :exclusion => { :in => %w(admin), :on => :create  }
   
 end

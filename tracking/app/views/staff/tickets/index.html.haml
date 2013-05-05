@@ -39,9 +39,13 @@
           - else
             %td= ticket.staff.name
           %td= ticket.ticket_status.definition
-         
-                   
+      .digg_pagination
+        .page_info
+          = page_entries_info @tickets
+        = will_paginate @tickets 
+                     
 - else
   = "Did not match any ticket"
-= link_to "Config department", staff_ticket_departments_path
-= link_to "Config statuses", staff_ticket_statuses_path
+.link 
+  = link_to "=>>Config department", staff_ticket_departments_path
+  = link_to "=>>Config statuses", staff_ticket_statuses_path

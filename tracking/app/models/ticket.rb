@@ -12,7 +12,8 @@ class Ticket < ActiveRecord::Base
   validates :name, :email, :subject, :body,
             :ticket_department_id, :ticket_status_id, :reference, :presence => true
    
-
+  validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
+  
   before_validation(:on => :create) do
     self.ticket_status_id = 1
     set_reference

@@ -2,6 +2,7 @@
   %title Support  
   = stylesheet_link_tag    "application", :media => "all" 
   = javascript_include_tag "application"  
+  = javascript_include_tag 'jquery' 
   = csrf_meta_tags 
 
 %body
@@ -10,7 +11,7 @@
       = flash[:notice]
       
   = yield
-.field
+.link_main
   - if session[:staff_id]
     = link_to "=>>> tickets", staff_root_path
   - elsif session[:admin_id]
@@ -18,8 +19,7 @@
   - else  
     = link_to "=>>> new ticket", root_path
   %br
-  
-  %br
+
   - if session[:staff_id] or session[:admin_id]
     = link_to "=>>> logout",logout_url, :method => :delete  
   - else

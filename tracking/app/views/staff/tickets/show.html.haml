@@ -51,21 +51,18 @@
         %div
           = history.action
           %adition
-            = history.created_at.strftime("%d %B %Y")    
+            = history.created_at.strftime("%d %B %Y") 
+     
 %fieldset
   %legend
     %h3= "Comments history"
   .history
-    - unless @ticket.comments.empty?
-      - @ticket.comments.each do |comment|
-        %div
-          = comment.body
-          %adition
-            - name = comment.staff_id.nil? ? @ticket.name : comment.staff.name
-            - date = comment.created_at.strftime("%d %B %Y")
-            = ", was create at #{date}, by #{name}"
-           
-            
+    %comment
+      = render :partial => "comment"
+ 
+
+  
+             
              
    
 

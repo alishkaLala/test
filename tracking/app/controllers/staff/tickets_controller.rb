@@ -3,7 +3,7 @@ class Staff::TicketsController < ApplicationController
    
   def index
     @current_staff_id =  any_log
-    @tickets = (Ticket.search(@current_staff_id,params[:needed_status].to_i,params[:needed_template]))
+    @tickets = (Ticket.search(@current_staff_id,params[:needed_status].to_i,params[:needed_template])).paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
@@ -13,7 +13,9 @@ class Staff::TicketsController < ApplicationController
     redirect_to staff_tickets_path if (@ticket.staff_id and @ticket.staff_id != @signed_in)
       
     @histories = @ticket.ticket_histories
+    @comments = @ticket.comments
     @current_staff_id =  any_log
+   
   end
   
   def update_fields
