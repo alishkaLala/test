@@ -22,7 +22,7 @@ class Staff::TicketDepartmentsController < ApplicationController
     begin
       @ticket_department.destroy
     rescue  Exception
-      flash[:notice] = "Wrong action" 
+      flash[:notice] = "Department in use" 
     end
     redirect_to staff_ticket_departments_path 
   end

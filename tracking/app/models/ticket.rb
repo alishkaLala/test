@@ -58,7 +58,7 @@ class Ticket < ActiveRecord::Base
     end
     
     def client_notify
-      ClientMailer.new_ticket_created(self).deliver
+      ClientMailer.new_ticket_created(self).deliver 
     end
     
     def set_reference

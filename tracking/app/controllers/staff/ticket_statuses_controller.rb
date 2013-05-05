@@ -23,7 +23,7 @@ class Staff::TicketStatusesController < ApplicationController
       begin
         @ticket_status.destroy
       rescue  Exception
-        flash[:notice] = "Wrong action" 
+        flash[:notice] = "Status in use" 
       end
     end
     redirect_to staff_ticket_statuses_path 

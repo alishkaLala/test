@@ -1,0 +1,22 @@
+#mailer {
+  background:#B2ECCD;
+  border-bottom: 3px  #172EA1 solid;
+  border-top: 3px  #172EA1 solid;
+  padding: 5px;
+  ul li {
+   
+    font-size: 12px;
+    list-style: square;
+  } 
+  
+  
+}
+pre {
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  border-bottom: 3px  #172EA1 solid;
+  border-top: 3px  #172EA1 solid;
+  background:#C4CCF0; 
+  padding: 10px;
+  }

@@ -10,12 +10,16 @@ class TicketsController < ApplicationController
   
   def create
     @ticket = Ticket.new(params[:ticket])
-    if @ticket.save
-      flash.notice = 'Ticket was successfully created.'
-      redirect_to root_path
-    else
-      render :new
-    end
+    begin
+      @ticket.save!
+      rescue Net::SMTPFatalError
+        flash.notice = "Can\'t send message to your email, check it and try again"
+        return  render :new
+      rescue Exception
+        return render :new
+    end    
+    flash.notice = 'Ticket was successfully created.'
+    redirect_to root_path
   end
 
  
