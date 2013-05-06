@@ -1,0 +1,7 @@
+- unless @histories.nil?
+  - @histories.each do |history|
+    %div
+      = history.action
+      %adition
+        = history.created_at.strftime("%d %B %Y") 
+= ajax_will_paginate @histories

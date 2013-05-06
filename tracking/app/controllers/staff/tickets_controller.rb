@@ -1,20 +1,21 @@
 class Staff::TicketsController < ApplicationController
    
    
-  def index
+  def index # only by free or current_staff
+    params[:needed_status] = params[:needed_status] ? params[:needed_status] : 1
     @current_staff_id =  any_log
-    @tickets = (Ticket.search(@current_staff_id,params[:needed_status].to_i,params[:needed_template])).paginate(:page => params[:page], :per_page => 10)
+    @tickets = (Ticket.search(params[:needed_status].to_i,params[:needed_template])).where(" staff_id IS  ? OR staff_id = ?", nil, @current_staff_id).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
     @signed_in = any_log
     @ticket = Ticket.find(params[:id])
-    @comments = @ticket.comments
+    @comments = @ticket.comments.order("created_at DESC").paginate(:per_page => 3, :page => params[:page_comment])
     if (@ticket.staff_id and @ticket.staff_id != @signed_in)
       flash.notice = "Ticket with reference #{@ticket.reference} is owned by another staff (name #{@ticket.staff.name}, id #{@ticket.staff.id})"
       redirect_to staff_tickets_path 
     end  
-    @histories = @ticket.ticket_histories
+    @histories = @ticket.ticket_histories.order("created_at DESC").paginate(:per_page => 3, :page => params[:page])
     @current_staff_id =  any_log
    
   end
@@ -31,8 +32,11 @@ class Staff::TicketsController < ApplicationController
       @person = Staff.find(any_log).name
       
       create_history_and_notice
-      ClientMailer.notify(@ticket, @notice).deliver   
-   
+      begin
+        ClientMailer.notify(@ticket, @notice).deliver   
+      rescue Net::SMTPFatalError
+        flash.notice = "Email was not sent."
+      end
     end
     
     redirect_to staff_ticket_path(:id => params[:id])
@@ -53,7 +57,7 @@ class Staff::TicketsController < ApplicationController
     @comment.body = message
     @comment.ticket_id = id
     @comment.staff_id = any_log
-    @notice += "Comment has been created to your request: #{@comment.body}" if @comment.save
+    @notice += "Comment has been created to your request: #{@comment.body}." if @comment.save
   end
   
    

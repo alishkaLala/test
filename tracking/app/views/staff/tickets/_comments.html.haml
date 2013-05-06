@@ -6,5 +6,4 @@
         - name = comment.staff_id.nil? ? @ticket.name : comment.staff.name
         - date = comment.created_at.strftime("%d %B %Y")
         = ", was create at #{date}, by #{name}"
-  
- 
+  = ajax_will_paginate @comments,:params => { :my_excluded_param => nil }, :param_name => 'page_comment'

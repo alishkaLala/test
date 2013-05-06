@@ -15,8 +15,9 @@
           %td= ticket_status.id
           %td= ticket_status.definition
           %td= button_to "Delete", staff_ticket_status_path(ticket_status.id), :method=>:delete, :class=>:destroy,:confirm=>"Are you sure?"
+  = will_paginate @ticket_statuses
 - else
-  = "Did not match any ticket status"  
+  = "Did not match any statuses"  
 %br  
 = form_tag  staff_ticket_statuses_path, :method=>:post do
   = label :definition, "New created status "

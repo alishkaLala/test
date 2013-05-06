@@ -1,7 +1,7 @@
 class Staff::TicketStatusesController < ApplicationController
-  
+  require 'will_paginate/array'  
   def index
-    @ticket_statuses = TicketStatus.all
+    @ticket_statuses = TicketStatus.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create

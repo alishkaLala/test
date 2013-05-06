@@ -25,9 +25,9 @@ class TicketsController < ApplicationController
  
   def show_ticket_by_reference
     @ticket = Ticket.find_by_reference(params[:reference])
-    @histories = @ticket.ticket_histories
+    @histories = @ticket.ticket_histories.order("created_at DESC").paginate(:per_page => 3, :page => params[:page])
     @comment = Comment.new
-    @comments = @ticket.comments
+    @comments = @ticket.comments.order("created_at DESC").paginate(:page => params[:page_comment], :per_page => 3)
     @statuses = TicketStatus.all 
     render "/staff/tickets/show"  
   end

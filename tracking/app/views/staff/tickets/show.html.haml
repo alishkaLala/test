@@ -46,19 +46,15 @@
   %legend
     %h3= "history"
   .history
-    - unless @histories.nil?
-      - @histories.each do |history|
-        %div
-          = history.action
-          %adition
-            = history.created_at.strftime("%d %B %Y") 
+    %div#histories
+      = render :partial => "staff/tickets/histories"
      
 %fieldset
   %legend
     %h3= "Comments history"
   .history
-     
-    = render :partial => "staff/tickets/comments"
+    %div#comments
+      = render :partial => "staff/tickets/comments"
      
 
   
