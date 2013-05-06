@@ -55,11 +55,11 @@ th {
   
 }
 
- 
+
  
 .history div { border: 1px dotted #0E4020; margin: 10px; padding: 10px;}
 .history adition { color: grey;}
-
+.history p {  max-width: 90em;}
 .field {
    font-style: italic;
    font-size: 20px;

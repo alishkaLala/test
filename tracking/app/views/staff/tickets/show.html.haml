@@ -36,7 +36,7 @@
         %br
     - else
       = form_for @comment, :method => :post do |f|
-        = f.text_field :body
+        = f.text_area :body, :size => "40x5"
         = f.hidden_field :ticket_id, :value => @ticket.id
         = submit_tag "Send"    
      

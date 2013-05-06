@@ -1,7 +1,8 @@
 - unless  @comments.empty?
   -  @comments.each do |comment|
     %div
-      = comment.body
+      %p 
+        = comment.body
       %adition
         - name = comment.staff_id.nil? ? @ticket.name : comment.staff.name
         - date = comment.created_at.strftime("%d %B %Y")
