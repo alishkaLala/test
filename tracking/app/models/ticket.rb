@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  
   attr_accessible :name, :email, :name,
                   :subject, :body, :ticket_department_id
   
