@@ -18,8 +18,12 @@ class Ticket < ActiveRecord::Base
     self.ticket_status_id = 1
     set_reference
   end
-  
-  
+
+    
+    
+   after_save(:on => :create) do
+    client_notify
+  end
   
   after_create  :client_notify, :history_creation
   

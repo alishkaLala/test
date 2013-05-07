@@ -13,7 +13,7 @@ class TicketsController < ApplicationController
     begin
       @ticket.save!
       rescue Net::SMTPFatalError
-        flash.notice = "Can\'t send message to your email, check it and try again"
+        flash.notice = "Can\'t end message to your email, check it and try again"
         return  render :new
       rescue Exception
         return render :new

@@ -23,7 +23,7 @@ Traking::Application.configure do
     :authentication => :login,  
     :content_type => "text/html",
     :user_name => 'test.mail.for.ruby',
-    :password => ''
+    :password => 'test.mail.for.rub'
   }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
