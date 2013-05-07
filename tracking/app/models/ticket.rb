@@ -21,7 +21,7 @@ class Ticket < ActiveRecord::Base
 
     
     
-   after_save(:on => :create) do
+  after_save(:on => :create) do
     client_notify
   end
   
@@ -57,8 +57,8 @@ class Ticket < ActiveRecord::Base
 
 
   def history_update person, type, value
-     sentence = "#{person} : #{type} was changed to #{value} "
-     ticket_histories.build(:action => sentence).save
+    sentence = "#{person} : #{type} was changed to #{value} "
+    ticket_histories.build(:action => sentence).save
   end
 
   def client_notify

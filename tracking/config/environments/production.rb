@@ -19,6 +19,19 @@ Traking::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+     config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :authentication => :login,  
+    :content_type => "text/html",
+    :user_name => 'test.mail.for.ruby',
+    :password => 'test.mail.for.rub'
+  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
